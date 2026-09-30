@@ -669,7 +669,7 @@
       <h2>Spot the Ball – Help Build Four Lanes</h2>
       <p>
         Study the image, place your marker where you think the ball should be, and submit your entry.
-        This competition is raising funds for our <strong>Under 9s</strong>, as part of the wider
+        This competition is raising funds for our <strong>Under 12s</strong>, as part of the wider
         Four Lanes for Letchworth campaign to create four new lanes for the future of cricket in our
         community.
       </p>
@@ -683,7 +683,7 @@
   </section>
 
   <section class="deadline-banner" id="deadlineBanner">
-    <div class="deadline-flash">⏰ DEADLINE EXTENDED! Entries now close 6:00pm, Friday 25th September ⏰</div>
+    <div class="deadline-flash">⏰ Entries close 7:30pm, Friday 16th October — Awards Night! ⏰</div>
     <div class="countdown" id="countdown">
       <div class="cd-box"><span class="cd-num" id="cdDays">–</span><span class="cd-label">Days</span></div>
       <div class="cd-box"><span class="cd-num" id="cdHours">–</span><span class="cd-label">Hours</span></div>
@@ -695,15 +695,15 @@
   <section class="info-banner">
     <div class="info-item">
       <span class="info-label">Entries close</span>
-      <span class="info-value">25th Sept, 6:00pm <em>(extended)</em></span>
+      <span class="info-value">16th Oct, 7:30pm</span>
     </div>
     <div class="info-item">
       <span class="info-label">Winner announced</span>
-      <span class="info-value">Awards Evening, 25th September 2026</span>
+      <span class="info-value">Awards Night, 16th October 2026</span>
     </div>
     <div class="info-item">
       <span class="info-label">In aid of</span>
-      <span class="info-value">Letchworth CC Under 9s</span>
+      <span class="info-value">Letchworth CC Under 12s</span>
     </div>
     <div class="info-item">
       <span class="info-label">Prize fund so far (10% of entries)</span>
@@ -738,7 +738,7 @@
 
       <div class="image-wrapper" id="imageWrapper">
         <img id="gameImage"
-             src="cricket-no-ball.jpg"
+             src="cricket-no-ball-u12.jpg"
              alt="Cricket Spot the Ball">
       </div>
 
@@ -753,8 +753,8 @@
       <h3>Step 3 – Enter your details</h3>
       <p>
         Fill in your details, then pay your entry fee by bank transfer — or in cash on the day —
-        below. Entries close <strong>6:00pm, 25th September 2026</strong> (extended!) — the winner
-        takes home 10% of the total prize fund, announced at the club's Awards Evening that evening.
+        below. Entries close <strong>7:30pm, 16th October 2026</strong> — the winner takes home 10%
+        of the total prize fund, announced that evening at the club's Awards Night.
       </p>
 
       <form id="entryForm">
@@ -764,7 +764,7 @@
         <label for="email">Email address</label>
         <input type="email" id="email" name="email" required>
 
-        <label for="childName">Child's name (optional — for the U9s fundraising prize)</label>
+        <label for="childName">Child's name (optional — for the U12 fundraising prize)</label>
         <input type="text" id="childName" name="childName">
 
         <button type="submit" id="continueBtn">Continue to Payment Details</button>
@@ -793,8 +793,8 @@
         <button type="button" id="confirmPaymentBtn">I've made this bank transfer</button>
 
         <p class="note" style="margin-top:14px;">
-          Prefer to pay in person instead? You can now pay <strong>cash on the day</strong> of the
-          Awards Evening — just tap below and bring the cash with you.
+          Prefer to pay in person instead? You can pay <strong>cash on the day</strong> of the
+          Awards Night — just tap below and bring the cash with you.
         </p>
 
         <button type="button" id="cashOnDayBtn">I'll pay cash on the day</button>
@@ -804,12 +804,11 @@
 
       <div class="footer">
         <p>
-          Entries close 6:00pm, 25th September 2026 (extended from the original date). After the
-          competition closes, the club will reveal the true ball position and select the winner based
-          on the closest guess. In the event of a tie, the earliest correct entry wins. The winner
-          receives 10% of the total prize fund, announced at the club's Awards Evening on 25th
-          September 2026. All proceeds support the Letchworth CC Under 9s, as part of the Four Lanes
-          for Letchworth campaign.
+          Entries close 7:30pm, 16th October 2026. After the competition closes, the club will reveal
+          the true ball position and select the winner based on the closest guess. In the event of a
+          tie, the earliest correct entry wins. The winner receives 10% of the total prize fund,
+          announced at the club's Awards Night on 16th October 2026. All proceeds support the
+          Letchworth CC Under 12s, as part of the Four Lanes for Letchworth campaign.
         </p>
         <p>
           Learn more about the campaign at
@@ -886,8 +885,8 @@
 
   loadPrizeFund();
 
-  // Countdown to the extended entry deadline: 6:00pm, 25th September 2026 (UK time, BST/+01:00)
-  const ENTRY_DEADLINE = new Date('2026-09-25T18:00:00+01:00');
+  // Countdown to the entry deadline: 7:30pm, 16th October 2026 (UK time, BST/+01:00)
+  const ENTRY_DEADLINE = new Date('2026-10-16T19:30:00+01:00');
 
   function updateCountdown() {
     const now = new Date();
@@ -1114,7 +1113,7 @@
 
     const paymentLine = method === 'cash'
       ? `You've chosen to pay <strong>£${entryData.amount} cash on the day</strong> — please bring it
-         with you to the Awards Evening, quoting reference <strong>${entryData.reference}</strong>.`
+         with you to the Awards Night, quoting reference <strong>${entryData.reference}</strong>.`
       : `Please make sure you send the bank transfer using reference <strong>${entryData.reference}</strong>.`;
 
     const resultBox = document.createElement('div');
@@ -1122,8 +1121,8 @@
     resultBox.innerHTML = `
       <h4>Thanks, ${entryData.name} — your entry is recorded!</h4>
       <p>Your ${entryData.package} entry (£${entryData.amount}) has been logged${childLine}. ${paymentLine}</p>
-      <p>The winner takes 10% of the total prize fund, announced at the Awards Evening on
-         25th September 2026. Good luck!</p>
+      <p>The winner takes 10% of the total prize fund, announced at the Awards Night on
+         16th October 2026. Good luck!</p>
     `;
 
     resultContainer.innerHTML = '';
