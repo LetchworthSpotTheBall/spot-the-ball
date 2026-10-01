@@ -779,9 +779,9 @@
         <p>Entry fee: <strong id="entryFeeDisplay">£0.00</strong></p>
 
         <div class="bank-details">
-          <div class="bank-row"><span>Account name</span><strong>Ryan Clark</strong></div>
-          <div class="bank-row"><span>Sort code</span><strong>20-25-97</strong></div>
-          <div class="bank-row"><span>Account number</span><strong>23158810</strong></div>
+          <div class="bank-row"><span>Account name</span><strong>Phil Searle</strong></div>
+          <div class="bank-row"><span>Sort code</span><strong>77-05-11</strong></div>
+          <div class="bank-row"><span>Account number</span><strong>00178773</strong></div>
           <div class="bank-row"><span>Payment reference</span><strong id="referenceDisplay">—</strong></div>
         </div>
 
@@ -792,12 +792,20 @@
 
         <button type="button" id="confirmPaymentBtn">I've made this bank transfer</button>
 
-        <p class="note" style="margin-top:14px;">
-          Prefer to pay in person instead? You can pay <strong>cash on the day</strong> of the
-          Awards Night — just tap below and bring the cash with you.
-        </p>
+        <div id="cashOnDayWrap">
+          <p class="note" id="cashOnDayLocked" style="margin-top:14px;">
+            Prefer to pay in person? <strong>Cash on the day</strong> opens up here once we're within
+            48 hours of entries closing.
+          </p>
 
-        <button type="button" id="cashOnDayBtn">I'll pay cash on the day</button>
+          <div id="cashOnDayAvailable" style="display:none;">
+            <p class="note" style="margin-top:14px;">
+              Prefer to pay in person instead? You can pay <strong>cash on the day</strong> of the
+              Awards Night — just tap below and bring the cash with you.
+            </p>
+            <button type="button" id="cashOnDayBtn">I'll pay cash on the day</button>
+          </div>
+        </div>
       </div>
 
       <div id="resultContainer"></div>
@@ -888,9 +896,29 @@
   // Countdown to the entry deadline: 7:30pm, 16th October 2026 (UK time, BST/+01:00)
   const ENTRY_DEADLINE = new Date('2026-10-16T19:30:00+01:00');
 
+  // Cash on the day only becomes an option in the final 48 hours before
+  // entries close — before that, only bank transfer is offered.
+  const CASH_ON_DAY_WINDOW_MS = 48 * 60 * 60 * 1000;
+
+  function updateCashOnDayVisibility(diff) {
+    const cashLocked = document.getElementById('cashOnDayLocked');
+    const cashAvailable = document.getElementById('cashOnDayAvailable');
+    if (!cashLocked || !cashAvailable) return;
+
+    if (diff <= CASH_ON_DAY_WINDOW_MS) {
+      cashLocked.style.display = 'none';
+      cashAvailable.style.display = 'block';
+    } else {
+      cashLocked.style.display = 'block';
+      cashAvailable.style.display = 'none';
+    }
+  }
+
   function updateCountdown() {
     const now = new Date();
     const diff = ENTRY_DEADLINE - now;
+
+    updateCashOnDayVisibility(diff);
 
     if (diff <= 0) {
       document.getElementById('countdown').innerHTML = '<div class="cd-box" style="min-width:auto;"><span class="cd-num" style="font-size:1rem;">Entries have closed</span></div>';
