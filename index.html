@@ -752,7 +752,7 @@
     <div class="card">
       <h3>Step 3 – Enter your details</h3>
       <p>
-        Fill in your details, then pay your entry fee by bank transfer — or in cash on the day —
+        Fill in your details, then pay your entry fee by bank transfer<span id="cashOnDayIntro" style="display:none;"> — or in cash on the day —</span>
         below. Entries close <strong>7:30pm, 16th October 2026</strong> — the winner takes home 10%
         of the total prize fund, announced that evening at the club's Awards Night.
       </p>
@@ -779,7 +779,7 @@
         <p>Entry fee: <strong id="entryFeeDisplay">£0.00</strong></p>
 
         <div class="bank-details">
-          <div class="bank-row"><span>Account name</span><strong>Phil Searle</strong></div>
+          <div class="bank-row"><span>Account name</span><strong>Phil Seale</strong></div>
           <div class="bank-row"><span>Sort code</span><strong>77-05-11</strong></div>
           <div class="bank-row"><span>Account number</span><strong>00178773</strong></div>
           <div class="bank-row"><span>Payment reference</span><strong id="referenceDisplay">—</strong></div>
@@ -793,11 +793,6 @@
         <button type="button" id="confirmPaymentBtn">I've made this bank transfer</button>
 
         <div id="cashOnDayWrap">
-          <p class="note" id="cashOnDayLocked" style="margin-top:14px;">
-            Prefer to pay in person? <strong>Cash on the day</strong> opens up here once we're within
-            48 hours of entries closing.
-          </p>
-
           <div id="cashOnDayAvailable" style="display:none;">
             <p class="note" style="margin-top:14px;">
               Prefer to pay in person instead? You can pay <strong>cash on the day</strong> of the
@@ -901,17 +896,13 @@
   const CASH_ON_DAY_WINDOW_MS = 48 * 60 * 60 * 1000;
 
   function updateCashOnDayVisibility(diff) {
-    const cashLocked = document.getElementById('cashOnDayLocked');
     const cashAvailable = document.getElementById('cashOnDayAvailable');
-    if (!cashLocked || !cashAvailable) return;
+    if (!cashAvailable) return;
 
-    if (diff <= CASH_ON_DAY_WINDOW_MS) {
-      cashLocked.style.display = 'none';
-      cashAvailable.style.display = 'block';
-    } else {
-      cashLocked.style.display = 'block';
-      cashAvailable.style.display = 'none';
-    }
+    cashAvailable.style.display = diff <= CASH_ON_DAY_WINDOW_MS ? 'block' : 'none';
+
+    const cashIntro = document.getElementById('cashOnDayIntro');
+    if (cashIntro) cashIntro.style.display = diff <= CASH_ON_DAY_WINDOW_MS ? 'inline' : 'none';
   }
 
   function updateCountdown() {
